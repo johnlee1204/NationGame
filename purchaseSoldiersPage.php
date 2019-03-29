@@ -64,6 +64,11 @@ echo "
 			
     </style>
     <body>
+    <script>
+    	function completePurchase() {
+    	    var soldierAmount = document.getElementById('soldiers').value;
+    	}
+	</script>
     <a href = 'nationHomePage.php'><img src='images/tank.png' width='140px' height='60px' ></a>
         <table>
             <tr>
@@ -74,6 +79,17 @@ echo "
                 <td>Money Available:</td>
                 <td>$$money</td>
             </tr>
+            <tr>
+            	<td>Cost Per Soldier</td>
+            	<td>$10.00</td>
+			</tr>
+            <tr>
+            	<td>Number Of Soldiers To Purchase</td>
+            	<td>
+            		<input id='soldiers'  name='soldiers' placeholder='#' required>
+            	</td>
+            </tr>
         </table>
+        <button onclick='completePurchase()'>Complete Purchase</button>
     </body>
 ";
