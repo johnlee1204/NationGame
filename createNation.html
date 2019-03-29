@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" type="image/png" sizes="32x32" href="icons/mainFavicon.png">
+		<title>Nation Game</title>
+		<style>
+			h1{
+				text-align:center;
+				font-size: 50px;
+			}
+			p{
+				margin-bottom:10px;
+			}
+			#centerDiv{
+				margin:auto;
+				width: 50%;
+				border: 3px solid blue;
+				padding: 10px;
+			}
+			table, td {
+				border: 3px solid black;
+				border-collapse: collapse;
+				padding: 10px;
+			}
+			input{
+				//margin-bottom:5px;
+			}
+			textarea{
+				width:300px;
+				height:300px;
+			}
+			.topInput{
+				position: relative;
+				margin-left: 150px;
+				margin-bottom: 5px;
+			}
+			button{
+				margin-left:5px;
+			}
+			label{
+				position: absolute;
+			}
+			
+		</style>
+		<script>
+			function checkNationNameAvailable(type){
+			    var nationName = document.getElementById('nationName').value;
+                var oReq = new XMLHttpRequest(); //New request object
+                oReq.onload = function() {
+					let serverReply = JSON.parse(oReq.response);
+					if(serverReply){
+					    if(type===0) {
+                            alert("That Nation Name Is Available");
+                        }
+					    return true;
+					}
+					else{
+                        alert("That Nation Name Is NOT Available");
+                        return false;
+					}
+                };
+                oReq.open("get", "checkNationName.php?nationName="+nationName, true);
+                oReq.send();
+			}
+            function checkLeaderNameAvailable(type){
+                var leaderName = document.getElementById('leaderName').value;
+                var oReq = new XMLHttpRequest(); //New request object
+                oReq.onload = function() {
+                    let serverReply = JSON.parse(oReq.response);
+                    if(serverReply){
+                        if(type===0) {
+                            alert("That Leader Name Is Available");
+                        }
+                        return true;
+                    }
+                    else{
+                        alert("That Leader Name Is NOT Available");
+                        return false;
+                    }
+                };
+                oReq.open("get", "checkLeaderName.php?leaderName="+leaderName, true);
+                oReq.send();
+            }
+            function checkEmailAvailable(type){
+                var email = document.getElementById('email').value;
+                var oReq = new XMLHttpRequest(); //New request object
+                oReq.onload = function() {
+                    let serverReply = JSON.parse(oReq.response);
+                    if(serverReply){
+                        if(type===0) {
+                            alert("That Email Is Available");
+                        }
+                        return true;
+
+                    }
+                    else{
+                        alert("That Email Is NOT Available");
+                        return false;
+                    }
+                };
+                oReq.open("get", "checkEmail.php?email="+email, true);
+                oReq.send();
+            }
+            function checkAllAvailable(){
+                var email = document.getElementById('email').value;
+                var leaderName = document.getElementById('leaderName').value;
+                var nationName = document.getElementById('nationName').value;
+                var oReq = new XMLHttpRequest(); //New request object
+                oReq.onload = function() {
+                    let serverReply = JSON.parse(oReq.response);
+                    if(serverReply){
+                        document.getElementById('form').submit();
+
+                    }
+                    else{
+                        alert("Check availability of email/leader name/ nation name");
+                        return false;
+                    }
+                };
+                oReq.open("get", "checkEmail.php?email="+email+"&leaderName="+leaderName+"&nationName="+nationName, true);
+                oReq.send();
+			}
+
+            function onSubmitCheck(){
+				checkAllAvailable();
+			}
+
+		</script>
+	</head>
+	
+	<body>
+		<h1>Create a Nation!</h1>
+		<form id = 'form' action="createNation.php" method="POST" onsubmit="return false">
+			<div id="centerDiv">
+				<label>Email:</label> <input id='email' class="topInput" type="email" name="email" placeholder="Email" required>
+				<button type="button" onclick="checkEmailAvailable(0)">Check Availability</button><br><br>
+				<label>Password:</label> <input class="topInput" type="password" name="password" placeholder="Password" required><br>
+				<label>Nation Name:</label> <input id = "nationName" class="topInput" type="text" name="nationName" placeholder="Nation Name" required>
+				<button type="button" onclick="checkNationNameAvailable(0)">Check Availability</button><br>
+				<label>Leader Name:</label> <input id="leaderName" class="topInput" type="text" name="leaderName" placeholder="Nation Leader Name" required>
+				<button type="button" onclick="checkLeaderNameAvailable(0)">Check Availability</button><br>
+				<label>Capital City:</label> <input class="topInput" type="text" name="capitalCity" placeholder="Capital City Name" required><br>
+				<label>Government Type:</label> <select class="topInput" name="government" required>
+					<option value="0" selected disabled>(please select:)</option>
+					<option value="Democracy">Democracy</option>
+					<option value="Monarchy">Monarchy</option>
+					<option value="Dictatorship">Dictatorship</option>
+					<option value="Republic">Republic</option>
+					<option value="Anarchy">Anarchy</option>
+				</select><br>
+				<label>Religion:</label> <select class="topInput" name="religion" required>
+					<option value="0" selected disabled>(please select:)</option>
+					<option value="Catholic">Catholic</option>
+					<option value="Protestant">Protestant</option>
+					<option value="Islam">Islam</option>
+					<option value="Judaism">Judaism</option>
+					<option value="Hinduism">Hinduism</option>
+				</select><br>
+				<label>Ethnicity:</label> <select class="topInput" name="ethnicity" required>
+				<option value="0" selected disabled>(please select:)</option>
+				<option value="German">German</option>
+				<option value="Asian">Asian</option>
+				<option value="Black">Black</option>
+				<option value="Hispanic">Hispanic</option>
+				<option value="Indian">Indian</option>
+			</select><br>
+				<p>Below are some questions to help begin your nation.</p>
+				<table>
+					<tr>
+						<td>
+							How do you feel about undocumented immigration?
+						</td>
+						<td>
+							<input type="radio" name="1" value="Yes" required>You welcome all immigrants to your land.<br>
+							<input type="radio" name="1" value="No" required>Immigrants are a dirty people who cannot be trusted or let into our borders!.<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							What economic system most closely represents your ideal system?
+						</td>
+						<td>
+							<input type="radio" name="2" value="capitalist" required>Capitalism.<br>
+							<input type="radio" name="2" value="socialist" required>Socialism.<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							How do you feel about the use of Drugs?
+						</td>
+						<td>
+							<input type="radio" name="3" value="Yes" required>Drug use should be fully legal.<br>
+							<input type="radio" name="3" value="No" required>Drug use is strictly illegal.<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Please write a something about your nation.
+						</td>
+						<td>
+							<textarea name="biography"></textarea><br>
+						</td>
+					</tr>
+				</table>
+				<input type="submit" onclick="onSubmitCheck()">
+			</div>
+		</form>
+	</body>
+</html>

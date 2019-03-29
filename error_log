@@ -1,0 +1,15 @@
+[15-Oct-2018 20:28:24 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/aqs8snko6af6/public_html/nationgame/index.php on line 21
+[15-Oct-2018 21:05:19 UTC] PHP Warning:  mysqli::__construct(): (42000/1044): Access denied for user 'johntheadmin'@'localhost' to database 'nationGame' in /home/aqs8snko6af6/public_html/nationgame/createNation.php on line 6
+[15-Oct-2018 21:05:19 UTC] PHP Warning:  mysqli::query() expects at least 1 parameter, 0 given in /home/aqs8snko6af6/public_html/nationgame/createNation.php on line 91
+[11-Dec-2018 05:14:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/aqs8snko6af6/public_html/nationgame/purchaseSoldiersPage.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/aqs8snko6af6/public_html/nationgame/purchaseSoldiersPage.php on line 26
+[11-Dec-2018 05:15:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/aqs8snko6af6/public_html/nationgame/purchaseSoldiersPage.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/aqs8snko6af6/public_html/nationgame/purchaseSoldiersPage.php on line 26
+[25-Dec-2018 06:48:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/aqs8snko6af6/public_html/nationgame/checkEmail.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/aqs8snko6af6/public_html/nationgame/checkEmail.php on line 13
